@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>InfoEmpleos - inicio </title>
+
+<metaname name = "description" content = "Encuantra tu proximo trabajo "> 
+</head>
+<link rel = "stylesheet" href="./style2.css"/>
+<script defer src="./script.js"></script>
+   
+
+
+<body>
+<header>
+    <h2><svg width="70" height="70" viewBox="0 0 150 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M75 10L115 90H35L75 10Z" fill="#20B2AA"/>
+
+    <path d="M40 70C35 70 30 75 30 80V120C30 125 35 130 40 130H45V70H40Z" fill="#20B2AA"/>
+    <path d="M110 70C115 70 120 75 120 80V120C120 125 115 130 110 130H105V70H110Z" fill="#20B2AA"/>
+
+    <rect x="50" y="80" width="50" height="50" rx="8" fill="#008B8B" stroke="#005f5f" stroke-width="2"/>
+
+    <circle cx="70" cy="100" r="15" stroke="white" stroke-width="4"/>
+    <rect x="80" y="105" width="20" height="5" rx="2" transform="rotate(45 80 105)" fill="white"/>
+
+    <rect x="63" y="95" width="14" height="10" rx="2" fill="white"/>
+    <path d="M68 93L72 93C72 92 70 91 70 91C68 91 68 92 68 93Z" fill="white"/>
+</svg>
+        
+        
+        
+        
+        
+        
+        InfoEmpleos</h2>
+
+    <nav>
+        <a href= "index.html">Inicio</a>
+        
+    </nav>
+
+    <div>
+        <a href= "">Publicar un empleo</a>
+        <a href= "">Añadir Skills</a>
+
+
+    </div>
+</header>
+<main>
+    <div class="hero-section">
+    <h1>Encuentra el trabajo de tus sueños</h1>
+    <p>Encuentra el trabajo que más se adecue a ti, de seguro lo encontrarás y serás feliz.</p>
+    
+    <form id="empleos-search-form" role="search">
+
+    <div class="search-form-container">
+       
+        
+        <div class="form-header">
+            <span class="bracket-icon"></span>
+            <h2>Busca tu oportunidad Dev</h2>
+            <span class="bracket-icon"></span>
+        </div>
+
+        <div class="search-container segmented-search">
+            <div class="search-segment">
+                <label for="language-input">Lenguaje/Habilidad</label>
+                
+                <input 
+                    type="text" 
+                    id="language-input" 
+                    placeholder="Ej: Python, React, DevOps"
+                    list="language-list"
+                >
+                <datalist id="language-list">
+                    <option value="Python"></option>
+                    <option value="JavaScript"></option>
+                    <option value="Java"></option>
+                    <option value="Go"></option>
+                    <option value="AWS"></option>
+                </datalist>
+            </div>
+
+            <div class="search-segment">
+                <label for="site-input">Sitio/Ubicación</label>
+                <input 
+                    type="text" 
+                    id="site-input" 
+                    placeholder="Ej: Remoto, Bogotá, Madrid"
+                    list="site-list"
+                >
+                <datalist id="Filter - site-list">
+                    <option value="Remoto"></option>
+                    <option value="Híbrido"></option>
+                    <option value="Colombia"></option>
+                    <option value="México"></option>
+                    <option value="Medellín"></option>
+                </datalist>
+            </div>
+
+            <div class="search-segment">
+                <label for="type-input">Tipo de Trabajo</label>
+                <input 
+                    type="text" 
+                    id="type-input" 
+                    placeholder="Ej: Full-Time, Freelance, Pasantía"
+                    list="type-list"
+                >
+                <datalist id="type-list">
+                    <option value="Full-Time"></option>
+                    <option value="Part-Time"></option>
+                    <option value="Freelance"></option>
+                    <option value="Pasantía"></option>
+                    
+                </datalist>
+            </div>
+            
+            <button id="search-button" class="search-button">
+                <input id="empleos-search-input" required
+        type="text" placeholder="Buscar Trabajo,Empresas,Habilidades">
+                 Buscar
+            </button>
+            
+            </form>
+            
+        </div>
+    </div>
+    <div class="job-listing-summary">
+        
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    
+<section>
+    <header>
+        <h3>Desarrollador de Software</h2></p>
+        <p>Crea aplicaciones, sistemas y herramientas. Programa, prueba y mantiene el software.</p>
+        <button   class="button-apply-job"  style="background-color: #267fb9; color: white; padding: 10px 20px; border-radius: 5px;">
+  Aplicar
+ </button>
+ <nav>
+        <a href= "Desarrollador de Software.html">Detalles de la Oferta </a>
+        
+    </nav>
+    
+    
+        <h3>Desarrollador Web</h2>
+        <p>Frontend: diseña interfaces visuales.
+
+Backend: crea la lógica y las bases de datos.
+
+Full Stack: domina ambas áreas.</p>
+        
+   <button class="button-apply-job" style="background-color: #267fb9; color: white; padding: 10px 20px; border-radius: 5px;"> Aplicar </button>
+   <nav>
+        <a href= "Desarrollador Web.html">Detalles de la Oferta </a>
+        
+    </nav>
+        <h3>Desarrollador Móvil</h2>
+        <p>InfoEmpleos es la principal plataforma donde las empresa y las personas que buscan empleos hacen macht</p>
+        <nav>
+        <a href= "Desarrollo Movil.html">Detalles de la Oferta </a>
+        
+    </nav>
+    <button class="button-apply-job" style="background-color: #267fb9; color: white; padding: 10px 20px; border-radius: 5px;"> Aplicar</button>
+     
+ 
+        <h3>Analista de Sistemas</h2>
+        <p>Identifica necesidades de los usuarios y diseña soluciones tecnológicas.</p>
+        <nav>
+        <a href= "Analista de Sistemas.html">Detalles de la Oferta </a>
+        
+    </nav>
+        
+    <button class="button-apply-job" style="background-color: #267fb9; color: white; padding: 10px 20px; border-radius: 5px;" > Aplicar </button>
+    <nav>
+        <ul class="pagimation">
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg></a></li>
+            <a class="is-active"href="#">1</a></li>
+            <a href="#">2</a></li>
+            <a href="#">3</a></li>
+            <a href="#">4</a></li>
+            <a href="#">5</a></li>
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg></a></li>
+
+        
+        
+        
+        
+        
+        
+        
+        </ul>
+
+
+
+
+    </nav>
+    
+    
+    
+    
+    </header>
+    <footer></footer>
+
+</main>
+<footer>
+    <small>&copy; 2025 InfoEmpleos . todos los derechos reservados </small>
+</footer>
+
+</body>
+</html>
