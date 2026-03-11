@@ -1,221 +1,172 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>InfoEmpleos - inicio </title>
-
-<metaname name = "description" content = "Encuantra tu proximo trabajo "> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portal profesional de empleos de tecnología con autenticación, búsqueda, reportes y respaldo.">
+  <title>InfoEmpleos | Panel profesional</title>
+  <link rel="stylesheet" href="./style2.css">
+  <script defer src="./script.js"></script>
 </head>
-<link rel = "stylesheet" href="./style2.css"/>
-<script defer src="./script.js"></script>
-   
-
-
 <body>
-<header>
-    <h2><svg width="70" height="70" viewBox="0 0 150 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M75 10L115 90H35L75 10Z" fill="#20B2AA"/>
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
 
-    <path d="M40 70C35 70 30 75 30 80V120C30 125 35 130 40 130H45V70H40Z" fill="#20B2AA"/>
-    <path d="M110 70C115 70 120 75 120 80V120C120 125 115 130 110 130H105V70H110Z" fill="#20B2AA"/>
+  <header class="app-header" role="banner">
+    <div class="brand-wrap">
+      <h1 class="brand-title">InfoEmpleos</h1>
+      <p class="brand-subtitle">Plataforma profesional de oportunidades TI</p>
+    </div>
 
-    <rect x="50" y="80" width="50" height="50" rx="8" fill="#008B8B" stroke="#005f5f" stroke-width="2"/>
-
-    <circle cx="70" cy="100" r="15" stroke="white" stroke-width="4"/>
-    <rect x="80" y="105" width="20" height="5" rx="2" transform="rotate(45 80 105)" fill="white"/>
-
-    <rect x="63" y="95" width="14" height="10" rx="2" fill="white"/>
-    <path d="M68 93L72 93C72 92 70 91 70 91C68 91 68 92 68 93Z" fill="white"/>
-</svg>
-        
-        
-        
-        
-        
-        
-        InfoEmpleos</h2>
-
-    <nav>
-        <a href= "index.html">Inicio</a>
-        
+    <nav aria-label="Navegación principal" class="main-nav">
+      <button type="button" data-section="panel" class="nav-link is-active">Panel</button>
+      <button type="button" data-section="empleos" class="nav-link">Empleos</button>
+      <button type="button" data-section="reportes" class="nav-link">Reportes</button>
+      <button type="button" data-section="ayuda" class="nav-link">Ayuda</button>
+      <button type="button" data-section="respaldo" class="nav-link">Respaldo</button>
     </nav>
 
-    <div>
-        <a href= "">Publicar un empleo</a>
-        <a href= "">Añadir Skills</a>
-
-
+    <div class="session-tools">
+      <span id="session-info" aria-live="polite">Sesión no iniciada</span>
+      <button id="logout-btn" type="button" class="ghost-btn" hidden>Cerrar sesión</button>
+      <a href="./index.html" class="ghost-btn">Inicio</a>
     </div>
-</header>
-<main>
-    <div class="hero-section">
-    <h1>Encuentra el trabajo de tus sueños</h1>
-    <p>Encuentra el trabajo que más se adecue a ti, de seguro lo encontrarás y serás feliz.</p>
-    
-    <form id="empleos-search-form" role="search">
+  </header>
 
-    <div class="search-form-container">
-       
-        
-        <div class="form-header">
-            <span class="bracket-icon"></span>
-            <h2>Busca tu oportunidad Dev</h2>
-            <span class="bracket-icon"></span>
+  <div class="breadcrumb" aria-label="Ubicación actual">
+    <span>Ubicación:</span>
+    <strong id="current-location">Panel</strong>
+  </div>
+
+  <main id="contenido-principal" class="main-layout">
+    <section id="mensajes-sistema" class="toast-region" aria-live="assertive" aria-atomic="true"></section>
+
+    <section class="card auth-card" id="panel">
+      <h2>Autenticación y gestión de sesión</h2>
+      <p class="muted">Inicia sesión, registra usuarios y recupera contraseñas con validaciones.</p>
+
+      <div class="auth-tabs" role="tablist" aria-label="Opciones de autenticación">
+        <button type="button" class="tab-btn is-active" data-auth-view="login" role="tab" aria-selected="true">Iniciar sesión</button>
+        <button type="button" class="tab-btn" data-auth-view="registro" role="tab" aria-selected="false">Registro</button>
+        <button type="button" class="tab-btn" data-auth-view="recuperar" role="tab" aria-selected="false">Recuperar contraseña</button>
+      </div>
+
+      <form id="login-form" class="auth-form" novalidate>
+        <label for="login-email">Correo corporativo *</label>
+        <input id="login-email" name="email" type="email" required autocomplete="email" placeholder="usuario@empresa.com">
+        <label for="login-password">Contraseña *</label>
+        <input id="login-password" name="password" type="password" required minlength="8" autocomplete="current-password" placeholder="Mínimo 8 caracteres">
+        <button type="submit" class="primary-btn">Entrar</button>
+      </form>
+
+      <form id="registro-form" class="auth-form hidden" novalidate>
+        <label for="register-name">Nombre completo *</label>
+        <input id="register-name" name="name" type="text" required minlength="3" placeholder="Ej: Andrea Pérez">
+        <label for="register-email">Correo *</label>
+        <input id="register-email" name="email" type="email" required placeholder="usuario@empresa.com">
+        <label for="register-role">Rol *</label>
+        <select id="register-role" name="role" required>
+          <option value="">Selecciona una opción</option>
+          <option value="candidato">Candidato</option>
+          <option value="reclutador">Reclutador</option>
+          <option value="admin">Administrador</option>
+        </select>
+        <label for="register-password">Contraseña *</label>
+        <input id="register-password" name="password" type="password" required minlength="8" placeholder="Mínimo 8 caracteres">
+        <button type="submit" class="primary-btn">Crear cuenta</button>
+      </form>
+
+      <form id="recuperar-form" class="auth-form hidden" novalidate>
+        <label for="recover-email">Correo registrado *</label>
+        <input id="recover-email" name="email" type="email" required placeholder="usuario@empresa.com">
+        <button type="submit" class="primary-btn">Enviar recuperación</button>
+      </form>
+
+      <div class="user-management">
+        <h3>Gestión de usuarios</h3>
+        <p class="muted">Visible para administradores.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Usuarios del sistema</caption>
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-body"></tbody>
+          </table>
         </div>
+      </div>
+    </section>
 
-        <div class="search-container segmented-search">
-            <div class="search-segment">
-                <label for="language-input">Lenguaje/Habilidad</label>
-                
-                <input 
-                    type="text" 
-                    id="language-input" 
-                    placeholder="Ej: Python, React, DevOps"
-                    list="language-list"
-                >
-                <datalist id="language-list">
-                    <option value="Python"></option>
-                    <option value="JavaScript"></option>
-                    <option value="Java"></option>
-                    <option value="Go"></option>
-                    <option value="AWS"></option>
-                </datalist>
-            </div>
+    <section id="empleos" class="card hidden">
+      <h2>Módulo de empleos</h2>
+      <form id="empleos-search-form" class="filters" role="search" novalidate>
+        <label for="search-input">Buscar vacantes *</label>
+        <input id="search-input" type="text" required placeholder="Ej: Frontend, DevOps, QA">
 
-            <div class="search-segment">
-                <label for="site-input">Sitio/Ubicación</label>
-                <input 
-                    type="text" 
-                    id="site-input" 
-                    placeholder="Ej: Remoto, Bogotá, Madrid"
-                    list="site-list"
-                >
-                <datalist id="Filter - site-list">
-                    <option value="Remoto"></option>
-                    <option value="Híbrido"></option>
-                    <option value="Colombia"></option>
-                    <option value="México"></option>
-                    <option value="Medellín"></option>
-                </datalist>
-            </div>
+        <label for="location-filter">Ubicación</label>
+        <select id="location-filter">
+          <option value="">Todas</option>
+          <option value="Remoto">Remoto</option>
+          <option value="Híbrido">Híbrido</option>
+          <option value="Bogotá">Bogotá</option>
+          <option value="Medellín">Medellín</option>
+        </select>
 
-            <div class="search-segment">
-                <label for="type-input">Tipo de Trabajo</label>
-                <input 
-                    type="text" 
-                    id="type-input" 
-                    placeholder="Ej: Full-Time, Freelance, Pasantía"
-                    list="type-list"
-                >
-                <datalist id="type-list">
-                    <option value="Full-Time"></option>
-                    <option value="Part-Time"></option>
-                    <option value="Freelance"></option>
-                    <option value="Pasantía"></option>
-                    
-                </datalist>
-            </div>
-            
-            <button id="search-button" class="search-button">
-                <input id="empleos-search-input" required
-        type="text" placeholder="Buscar Trabajo,Empresas,Habilidades">
-                 Buscar
-            </button>
-            
-            </form>
-            
-        </div>
-    </div>
-    <div class="job-listing-summary">
-        
-        </div>
-    </div>
-    </div>
+        <label for="type-filter">Tipo</label>
+        <select id="type-filter">
+          <option value="">Todos</option>
+          <option value="Tiempo completo">Tiempo completo</option>
+          <option value="Medio tiempo">Medio tiempo</option>
+          <option value="Freelance">Freelance</option>
+        </select>
 
+        <button type="submit" class="primary-btn">Buscar</button>
+      </form>
 
+      <p id="result-count" class="muted" aria-live="polite"></p>
+      <div id="jobs-list" class="jobs-grid"></div>
+    </section>
 
+    <section id="reportes" class="card hidden">
+      <h2>Reportes del sistema</h2>
+      <div class="stats-grid" id="stats-grid"></div>
+      <button id="export-report-btn" type="button" class="primary-btn">Exportar reporte JSON</button>
+    </section>
 
+    <section id="ayuda" class="card hidden">
+      <h2>Centro de ayuda</h2>
+      <details>
+        <summary>¿Cómo aplicar a una vacante?</summary>
+        <p>Inicia sesión, filtra las vacantes y selecciona <strong>Aplicar</strong>. El sistema confirmará tu postulación.</p>
+      </details>
+      <details>
+        <summary>¿Cómo recuperar mi contraseña?</summary>
+        <p>En el módulo de autenticación, abre la pestaña <strong>Recuperar contraseña</strong> e ingresa tu correo.</p>
+      </details>
+      <details>
+        <summary>Buenas prácticas de seguridad</summary>
+        <p>Usa contraseñas fuertes, no compartas credenciales y cierra sesión en dispositivos públicos.</p>
+      </details>
+    </section>
 
+    <section id="respaldo" class="card hidden">
+      <h2>Copias de seguridad</h2>
+      <p class="muted">Genera y restaura respaldo de datos locales del sistema.</p>
+      <div class="backup-actions">
+        <button id="backup-btn" type="button" class="primary-btn">Generar copia</button>
+        <label for="restore-file" class="primary-btn file-label">Restaurar copia</label>
+        <input id="restore-file" type="file" accept="application/json" hidden>
+      </div>
+    </section>
+  </main>
 
-
-
-
-    
-<section>
-    <header>
-        <h3>Desarrollador de Software</h2></p>
-        <p>Crea aplicaciones, sistemas y herramientas. Programa, prueba y mantiene el software.</p>
-        <button   class="button-apply-job"  style="background-color: #267fb9; color: white; padding: 10px 20px; border-radius: 5px;">
-  Aplicar
- </button>
- <nav>
-        <a href= "Desarrollador de Software.html">Detalles de la Oferta </a>
-        
-    </nav>
-    
-    
-        <h3>Desarrollador Web</h2>
-        <p>Frontend: diseña interfaces visuales.
-
-Backend: crea la lógica y las bases de datos.
-
-Full Stack: domina ambas áreas.</p>
-        
-   <button class="button-apply-job" style="background-color: #267fb9; color: white; padding: 10px 20px; border-radius: 5px;"> Aplicar </button>
-   <nav>
-        <a href= "Desarrollador Web.html">Detalles de la Oferta </a>
-        
-    </nav>
-        <h3>Desarrollador Móvil</h2>
-        <p>InfoEmpleos es la principal plataforma donde las empresa y las personas que buscan empleos hacen macht</p>
-        <nav>
-        <a href= "Desarrollo Movil.html">Detalles de la Oferta </a>
-        
-    </nav>
-    <button class="button-apply-job" style="background-color: #267fb9; color: white; padding: 10px 20px; border-radius: 5px;"> Aplicar</button>
-     
- 
-        <h3>Analista de Sistemas</h2>
-        <p>Identifica necesidades de los usuarios y diseña soluciones tecnológicas.</p>
-        <nav>
-        <a href= "Analista de Sistemas.html">Detalles de la Oferta </a>
-        
-    </nav>
-        
-    <button class="button-apply-job" style="background-color: #267fb9; color: white; padding: 10px 20px; border-radius: 5px;" > Aplicar </button>
-    <nav>
-        <ul class="pagimation">
-            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg></a></li>
-            <a class="is-active"href="#">1</a></li>
-            <a href="#">2</a></li>
-            <a href="#">3</a></li>
-            <a href="#">4</a></li>
-            <a href="#">5</a></li>
-            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg></a></li>
-
-        
-        
-        
-        
-        
-        
-        
-        </ul>
-
-
-
-
-    </nav>
-    
-    
-    
-    
-    </header>
-    <footer></footer>
-
-</main>
-<footer>
-    <small>&copy; 2025 InfoEmpleos . todos los derechos reservados </small>
-</footer>
-
+  <footer class="app-footer" role="contentinfo">
+    <p>© 2026 InfoEmpleos · Proyecto académico profesional.</p>
+    <p>Iconos: Tabler Icons (MIT), fuente: Inter (Open Font License), fecha de consulta: 2026-03-11.</p>
+  </footer>
 </body>
 </html>
