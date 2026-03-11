@@ -91,10 +91,13 @@ function handleRegister(event) {
   const form = event.currentTarget;
   if (!form.reportValidity()) return;
 
+  const requestedRole = form.role?.value;
+  const safeRole = "candidato";
+
   const payload = {
     name: form.name.value.trim(),
     email: form.email.value.trim().toLowerCase(),
-    role: form.role.value,
+    role: safeRole,
     password: form.password.value,
     active: true
   };
@@ -107,6 +110,9 @@ function handleRegister(event) {
   saveData();
   form.reset();
   switchAuthView("login");
+  if (requestedRole && requestedRole !== safeRole) {
+    showToast("El registro público solo permite el rol candidato.", "warning");
+  }
   showToast("Registro exitoso. Ya puedes iniciar sesión.", "success");
   renderUsers();
 }
@@ -178,13 +184,28 @@ function renderUsers() {
 
   const canSeeUsers = state.session?.role === "admin";
   if (!canSeeUsers) {
-    tbody.innerHTML = "<tr><td colspan='4'>Debes iniciar sesión como administrador para ver esta información.</td></tr>";
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+    cell.colSpan = 4;
+    cell.textContent = "Debes iniciar sesión como administrador para ver esta información.";
+    row.appendChild(cell);
+    tbody.appendChild(row);
     return;
   }
 
   state.users.forEach(user => {
     const row = document.createElement("tr");
-    row.innerHTML = `<td>${user.name}</td><td>${user.email}</td><td>${user.role}</td><td>${user.active ? "Activo" : "Inactivo"}</td>`;
+    const columns = [
+      user.name,
+      user.email,
+      user.role,
+      user.active ? "Activo" : "Inactivo"
+    ];
+    columns.forEach(value => {
+      const cell = document.createElement("td");
+      cell.textContent = value;
+      row.appendChild(cell);
+    });
     tbody.appendChild(row);
   });
 }
